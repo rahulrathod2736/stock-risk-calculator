@@ -44,14 +44,14 @@ function App() {
         .required("One Trade Risk is required")
         .min(0)
         .max(100),
-      stopLossPrice: Yup.number().required("Stop Loss Price is required"),
     }),
     onSubmit: (values) => {
       const RRR = (+values.capital / 100) * +values.oneTradeRisk;
-      const tradeQuanity = RRR / +values.stopLossPrice;
-      const minimumTarget = +values.stopLossPrice * 2;
+      const stopLossPrice = (+values.stockPrice/ 100) * +values.oneTradeRisk
+      const tradeQuanity = RRR / +stopLossPrice;
+      const minimumTarget = +stopLossPrice * 2;
       const profit = tradeQuanity * minimumTarget;
-      const stopLoss = +values.stopLossPrice * tradeQuanity;
+      const stopLoss = +stopLossPrice * tradeQuanity;
       const useFund = tradeQuanity * +values.stockPrice;
       setMarketRisk({
         useFund,
@@ -114,20 +114,6 @@ function App() {
                 name="oneTradeRisk"
                 type="number"
                 value={formik.values.oneTradeRisk}
-                onChange={formik.handleChange}
-              />
-            </Form.Item>
-          </TooltipInputField>
-          <TooltipInputField message={formik.errors.stopLossPrice}>
-            <Form.Item label="Stop Loss Price">
-              <Input
-                placeholder="Stop Loss Price"
-                className="focus:outline-none focus:ring-2 focus:ring-[#4096ff] focus:ring-offset-2 focus:ring-offset-slate-50"
-                prefix={<>Rs</>}
-                type="number"
-                status={formik.errors.stopLossPrice ? "error" : ""}
-                name="stopLossPrice"
-                value={formik.values.stopLossPrice}
                 onChange={formik.handleChange}
               />
             </Form.Item>

@@ -24,7 +24,6 @@ function App() {
   const [marketRisk, setMarketRisk] = useState({
     useFund: 0,
     tradeQuanity: 0,
-    stopLoss: 0,
     minimumTarget: 0,
     targetHitProfit: 0,
     stockLossHitLoss: 0,
@@ -56,7 +55,6 @@ function App() {
       setMarketRisk({
         useFund,
         tradeQuanity,
-        stopLoss,
         minimumTarget,
         targetHitProfit: profit,
         stockLossHitLoss: stopLoss,
@@ -75,7 +73,7 @@ function App() {
         <div className="text-3xl my-12 sm:my-0 !mb-8 ">
           Market Risk Calculator
         </div>
-        <div className="grid gird-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center w-2/3">
+        <div className="grid gird-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-center justify-center w-2/3">
           <TooltipInputField message={formik.errors.capital}>
             <Form.Item label="Capital" className="text-white">
               <Input
